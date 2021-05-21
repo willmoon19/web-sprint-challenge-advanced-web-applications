@@ -9,8 +9,10 @@ import axiosWithAuth from "./helpers/axiosWithAuth";
 
 function App() {
 
+  const [url, setUrl] = useState("http://localhost:5000/api");
+
   const handleLogout = () => {
-    axiosWithAuth().post("/#")
+    axiosWithAuth().post(url, "/#")
     .then(res => {
       localStorage.removeItem("token")
       window.location.href = "/"
@@ -37,7 +39,7 @@ function App() {
         </ul>
         <Switch>
           <Route exact path="/" component={Login} />
-          <PrivateRoute path="/protected" component={BubblePage} />
+          <PrivateRoute path="/protected" component={BubblePage} setUrl={setUrl} />
         </Switch>
       </div>
     </Router>

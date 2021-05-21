@@ -15,16 +15,8 @@ const Login = (props) => {
   useEffect(()=>{
     // make a post request to retrieve a token from the api
     // when you have handled the token, navigate to the BubblePage route
-    // axios.post("http://localhost:5000/api/login", {loginInfo})
-    // .then(res => {
-    //   console.log(res)
-    //   localStorage.setItem("token", res.data.payload)
-    // })
-    // .catch(err => console.log(err))
   });
-  
-  // const error = "";
-  //replace with error state
+
   const handleChange = (e) => {
     const {name, value} = e.target;
     setLoginInfo({
@@ -34,7 +26,7 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/login", { username: 'Lambda School', password: 'i<3Lambd4' })
+    axios.post("http://localhost:5000/api/login", loginInfo)
     .then(res => {
       localStorage.setItem("token", res.data.payload)
       props.history.push("/protected")

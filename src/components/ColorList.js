@@ -23,18 +23,18 @@ const ColorList = ({ colors, updateColors }) => {
     e.preventDefault();
     axiosWithAuth().put('http://localhost:5000/api/colors/:id', colorToEdit)
     .then(res => {
-      console.log(res)
+      updateColors(res.data)
     })
-    .catch(err => console.log(err.response.data))
+    .catch(err => console.log(err))
   };
 
   const deleteColor = color => {
     const { id } = color
     axiosWithAuth().delete(`http://localhost:5000/api/colors/${id}`)
     .then(res => {
-      console.log(res)
-      updateColors(colors.filter(item => item.id !== res.data))
+      updateColors(colors.filter(item => item.id !== parseInt(res.data)))
     })
+    .catch(err => console.log(err));
   };
 
   return (
